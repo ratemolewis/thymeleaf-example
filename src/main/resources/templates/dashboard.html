@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org" xmlns:float="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/demo.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/material-dashboard.min.css}">
+
+</head>
+<script>
+    function loader() {
+
+            var username = localStorage.getItem("name");
+            document.getElementById("username").innerHTML = username;
+
+            var id = localStorage.getItem("id");
+            $.ajax({
+                method:"GET",
+                url:"../hotel/"+id,
+                dataType:"json",
+                success:function (response) {
+                    console.log(response);
+                    var table_header = "<table class='table table-striped " +
+                        "table-bordered table-hover table-full-width'><thead>" +
+                        "<tr>" +
+                        "<td>Name</td>" +
+                        "<td>Location</td>" +
+                        "<td>Description</td>" +
+                        "<td>Contact Details</td>" +
+                        "<td>Actions</td>" +
+                        "</tr></thead>";
+
+
+                    var table_body = "<tbody>";
+                    for(var i=0;i<response.length;i++){
+                        var hotel_name = response[i].name;
+                        var hotel_Location = response[i].location.name;
+                        var hotel_description = response[i].description;
+
+                        var contacts ="Email:"+ response[i].email+"<br>" +
+                            "phonenumber:"+response[i].phone;
+                        console.log(hotel_name+'\n'+hotel_Location+'\n'+hotel_description);
+                        var actions = "<button type ='button' class = 'btn btn-round btn-danger'>Delete</button>" +
+                            "<button type ='button' class = 'btn btn-round btn-success'>Update</button>";
+                        var data = "<tr>" +
+                            "<td>"+hotel_name+"</td>"+
+                            "<td>"+hotel_Location+"</td>"+
+                            "<td>"+hotel_description+"</td>"+
+                            "<td>"+contacts+"</td>"+
+                            "<td>"+actions+"</td>"+
+                        "</tr>";
+
+                        table_body += data;  // appending the data
+
+                    }
+                    table_body += "</tbody>";
+                    $("#loadHotels").html(table_header+table_body+"</table>");
+
+                }
+            });
+    }
+   </script>
+
+<body onload="loader()">
+
+<div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h4 class="navbar-brand" id="username" style="float:right;"></h4>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="container" style="padding-right: 5%; padding-left: 1%;">
+    <div id="quickStatsHeader" class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Card 1</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Card 2</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Card 3</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Card 4</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="hotelContents" class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h1>My Hotels</h1>
+                <button class="btn btn-round btn-info"
+                        style="float: right" onclick="windowOpener('./add-hotel')">ADD HOTEL</button>
+
+                <div class="material-datatables" id="loadHotels">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<h1>You are currently in the dashboard</h1>
+</body>
+
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/controller.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/sweetalert2.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+<script th:src="@{/js/sweetalert2.min.js}"></script>
+
+
+</html>

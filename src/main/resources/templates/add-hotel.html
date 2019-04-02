@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Hotel</title>
+
+
+        <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/demo.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/material-dashboard.min.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/sweetalert2.min.css}">
+</head>
+<script>
+    function loader() {
+        $.ajax({
+            url:"../location",
+            method:"GET",
+            dataType:"json",
+            success:function (response) {
+                console.log(response);
+                var select = '<div class="form-group label-floating">' +
+                    '         <label class="control-label">Hotel Location</label>' +
+                    '         <select  class="form-control" id="hotel_location">'
+                     ;
+                var options ='<option value="0">Click to select a hotel</option>';
+                for(var i=0;i<response.length;i++){
+                    var id = response[i].id;
+                    var name = response[i].name;
+
+
+                    options += '<option value="'+id+'">'+name+'</option>';
+                }
+                $("#location").html(select+options+'</select>'+'</div>');
+            }
+        });
+    }
+</script>
+
+<body onload="loader()">
+<div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h1 class="navbar-brand"><b>ADD HOTEL</b></h1>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="card col-md-6" style="margin: auto; width: 50%;">
+    <div class="card-body">
+     <div class="form-group label-floating">
+         <label class="control-label">Hotel Name</label>
+         <input type="text" class="form-control" id="hotel_name">
+     </div>
+        <div class="form-group label-floating">
+            <label class="control-label">Hotel Email</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group label-floating">
+            <label class="control-label">Hotel Description</label>
+            <input type="text" class="form-control" id="description">
+        </div>
+        <div class="form-group label-floating">
+            <label class="control-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone">
+        </div>
+        <div id="location">
+
+        </div>
+        <div style="margin: auto;width: 50%;" class="col col-md-12">
+            <button type="button" class="btn btn-round btn-info"
+            onclick="addHotel()">Submit</button>
+        </div>
+
+    </div>
+</div>
+</body>
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/controller.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/sweetalert2.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+
+</html>

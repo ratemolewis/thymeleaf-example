@@ -1,0 +1,49 @@
+package com.zalego.io.demo.services;
+
+
+import com.zalego.io.demo.Repo.HotelRepo;
+import com.zalego.io.demo.entities.Hotel;
+import com.zalego.io.demo.entities.Location;
+import com.zalego.io.demo.entities.Users;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class HotelServices {
+    @Autowired
+    private HotelRepo repository;
+
+    public List<Hotel> findAll(){
+        return repository.findHotelByDeletedStatus(false);
+    }
+    public Hotel addHotel(Hotel hotel){
+        return repository.save(hotel);
+    }
+    public Hotel findById(Long id){
+        Hotel[] hotels = {new Hotel()};
+        repository.findById(id).ifPresent(hotel -> {
+                hotels[0] = hotel;
+    });
+        return hotels[0];
+    }
+    public List<Hotel> findByHotelsByLocation(Location location){
+        List<Hotel> hotels=new ArrayList<>();
+        repository.findByLocation(location).ifPresent(hotel -> {
+            hotels.add(hotel);
+        });
+        return hotels;
+    }
+    public List<Hotel> findByHotelsByUser(Users users) {
+
+        return repository.findByUser(users);
+    }
+    public void deleteHotel(long id){
+        repository.findById(id).ifPresent(hotel -> {
+            hotel.setDeletedStatus(true);
+            repository.save(hotel);
+        });
+    }
+}
