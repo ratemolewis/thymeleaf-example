@@ -1,11 +1,16 @@
 package com.zalego.io.demo.controller;
 
-import com.zalego.io.demo.services.EventsService;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/events")
 public class EventsController {
-    private EventsService service;
+    @GetMapping("/event")
+    public String getEvent(Model model){
+        model.addAttribute("event");
+        return "event";
+    }
 }

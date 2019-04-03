@@ -18,4 +18,9 @@ public class MenuService {
 
         return repository.findAll();
     }
+
+    public Menu addMenu(Menu menu){
+        return repository.save(menu);
+    }
+
 }

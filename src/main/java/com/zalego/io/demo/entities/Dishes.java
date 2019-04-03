@@ -2,7 +2,6 @@ package com.zalego.io.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonMerge;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ser.Serializers;
 
 import javax.persistence.*;
 
@@ -10,16 +9,19 @@ import javax.persistence.*;
 @Table(name = "Dishes")
 public class Dishes extends BaseEntity {
     @Column(name = "name")
+    @JsonProperty("name")
     private String name;
     @Column(name = "description")
     private String description;
     @Column(name = "price")
     private double price;
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "menu_id")
-    private Menu menu_id;
+    @JoinColumn(name = "dishes")
     @JsonProperty("menu_id")
     @JsonMerge
+    private Menu menu_id;
+
+
 
     public String getName() {
         return name;

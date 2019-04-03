@@ -4,7 +4,9 @@ import com.zalego.io.demo.controller.DO.Login;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/thyme")
@@ -20,6 +22,7 @@ public class thymeController {
     }
     @GetMapping("/login")
     public String login(Model model ){
+
         return "login";
     }
     @GetMapping("/register")
@@ -36,6 +39,7 @@ public class thymeController {
     }
     @GetMapping("/add-hotel")
     public String addHotel(Model model){
+
         return "add-hotel";
     }
 }

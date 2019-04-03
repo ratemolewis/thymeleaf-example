@@ -17,9 +17,11 @@ public class HotelServices {
     private HotelRepo repository;
 
     public List<Hotel> findAll(){
+
         return repository.findHotelByDeletedStatus(false);
     }
     public Hotel addHotel(Hotel hotel){
+
         return repository.save(hotel);
     }
     public Hotel findById(Long id){
