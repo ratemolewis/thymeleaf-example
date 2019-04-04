@@ -2,13 +2,12 @@ package com.zalego.io.demo.entities;
 
 import com.zalego.io.demo.configs.Encrypt;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -22,9 +21,6 @@ public class Users extends BaseEntity{
     @Column(name="password")
     private String password;
 
-
-    public Users() {
-    }
 
     public String getName() {
         return name;

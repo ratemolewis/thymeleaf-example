@@ -5,7 +5,6 @@ import com.zalego.io.demo.services.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -15,8 +14,7 @@ public class LocationController {
     private LocationService service;
 
     @PostMapping
-    public Location addLocation(
-            @RequestBody Location   location){
+    public Location addLocation(@RequestBody Location   location){
         return service.addLocation(location);
     }
     @GetMapping

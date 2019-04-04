@@ -16,10 +16,11 @@ public class HotelController {
 
     @PostMapping
     public Hotel addHotel(@RequestBody Hotel hotel) {
-        //  services.addHotel(hotel);
+        services.addHotel(hotel);
         System.out.println(hotel.getName() + "the value");
-        System.out.println(hotel.getLocation().getId() + "the value");
-        return services.addHotel(hotel);}
+      System.out.println(hotel.getLocation().getId() + "the value");
+        return services.addHotel(hotel);
+    }
 
     @GetMapping
     public List<Hotel>findAll(){

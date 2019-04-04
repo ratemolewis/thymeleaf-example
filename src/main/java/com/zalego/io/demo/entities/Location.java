@@ -1,13 +1,15 @@
 package com.zalego.io.demo.entities;
 
-import javax.persistence.*;
-import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="location")
 public class Location extends BaseEntity{
     @Column(name="name")
     private String name;
+
     public String getName() {
         return name;
     }

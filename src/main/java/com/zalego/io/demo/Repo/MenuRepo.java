@@ -3,6 +3,8 @@ package com.zalego.io.demo.Repo;
 import com.zalego.io.demo.entities.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MenuRepo extends JpaRepository<Menu,Long> {
+import java.util.List;
 
+public interface MenuRepo extends JpaRepository<Menu,Long> {
+    List<Menu> findMenuByDeletedStatus(boolean status);
 }

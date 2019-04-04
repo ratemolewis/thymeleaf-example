@@ -1,12 +1,9 @@
 package com.zalego.io.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonMerge;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
-
 import java.math.BigInteger;
 
 @Entity
@@ -26,9 +23,6 @@ public class Hotel extends BaseEntity {
     @Column(name="description")
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name ="hotel_Menu",nullable = true)
-    private Menu hotel_Menu;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="user",nullable = false)
     @JsonProperty("user")
@@ -84,11 +78,4 @@ public class Hotel extends BaseEntity {
         this.user = user;
     }
 
-    public Menu getHotel_Menu() {
-        return hotel_Menu;
-    }
-
-    public void setHotel_Menu(Menu hotel_Menu) {
-        this.hotel_Menu = hotel_Menu;
-    }
 }

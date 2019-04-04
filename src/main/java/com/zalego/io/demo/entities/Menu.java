@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name ="Menu" )
@@ -21,21 +20,21 @@ public class Menu extends BaseEntity {
     @JsonMerge
     private Hotel hotel_id;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "menu_id")
-    @JsonProperty("dishes")
-    @JsonMerge
-    private List<Dishes> dishes;
+//    @OneToMany(cascade = CascadeType.PERSIST)
+//    @JoinColumn(name = "menu_id")
+//    @JsonProperty("dishes")
+//    @JsonMerge
+//    private List<Dishes> dishes;
 
 
 
-    public List<Dishes> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(List<Dishes> dishes) {
-        this.dishes = dishes;
-    }
+//    public List<Dishes> getDishes() {
+//        return dishes;
+//    }
+//
+//    public void setDishes(List<Dishes> dishes) {
+//        this.dishes = dishes;
+//    }
 
     public String getMenu() {
         return menu;
@@ -49,8 +48,9 @@ public class Menu extends BaseEntity {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDate(String date) {
+        LocalDateTime localDateTime= LocalDateTime.parse(date+"T00:00:00");
+        this.date = localDateTime;
     }
 
     public Hotel getHotel_id() {

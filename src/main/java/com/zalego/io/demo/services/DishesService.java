@@ -2,7 +2,6 @@ package com.zalego.io.demo.services;
 
 import com.zalego.io.demo.Repo.DishesRepo;
 import com.zalego.io.demo.entities.Dishes;
-import com.zalego.io.demo.entities.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,8 +45,8 @@ public class DishesService {
             repository.save(dish);
         });
      }
-     public List<Dishes> findByName(Menu dishName){
-
-         return repository.findAllByMenu_id(dishName);
-     }
+//     public List<Dishes> findByName(Menu dishName){
+//
+//         return repository.findAllByMenu_id(dishName);
+//     }
 }

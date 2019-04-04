@@ -1,7 +1,6 @@
 package com.zalego.io.demo.controller;
 
 import com.zalego.io.demo.entities.Dishes;
-import com.zalego.io.demo.entities.Menu;
 import com.zalego.io.demo.services.DishesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +24,11 @@ public class DishesController {
 
       return dishesService.findById(id);
   }
-  @GetMapping("/name/{name}")
-//@RequestMapping(method = RequestMethod.GET)
-//  public Dishes findByName(@RequestParam(value="name") String dishName){
-public List<Dishes> findByMenu(@PathVariable Menu menu_id){
-     return  dishesService.findByName(menu_id);
-  }
+//  @GetMapping("/name/{name}")
+//
+//public List<Dishes> findByMenu(@PathVariable Menu menu_id){
+//     return  dishesService.findByName(menu_id);
+//  }
 
    @GetMapping
     public List<Dishes>  getDishes(){

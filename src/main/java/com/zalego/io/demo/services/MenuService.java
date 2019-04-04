@@ -14,13 +14,26 @@ public class MenuService {
     @Autowired
     private MenuRepo repository;
 
-    public List<Menu> findById(){
+    public List<Menu> findAll(){
 
-        return repository.findAll();
+        return repository.findMenuByDeletedStatus(false);
     }
 
-    public Menu addMenu(Menu menu){
+    public Menu addMenu(Menu menu)
+    {
         return repository.save(menu);
     }
-
+  public Menu findById(long id){
+       Menu[] menu= {new Menu()};
+       repository.findById(id).ifPresent(menu1->{
+           menu[0]=menu1;
+       });
+       return menu[0];
+  }
+  public void deleteMenu(long id){
+        repository.findById(id).ifPresent(menu -> {
+            menu.setDeletedStatus(true);
+            repository.save(menu);
+        });
+  }
 }
